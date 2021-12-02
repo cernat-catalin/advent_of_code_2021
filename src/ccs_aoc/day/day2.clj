@@ -5,12 +5,12 @@
 
 (def inputFile "input/day2.txt")
 
-(defn readCmds
-  []
-  (map #(identity [(first %) (Integer/parseInt (second %))])
-       (map #(str/split % #" ")
-            (str/split-lines
-             (slurp inputFile)))))
+(defn readCmds []
+  (->> inputFile
+       slurp
+       str/split-lines
+       (map #(str/split % #" "))
+       (map #(identity [(first %) (Integer/parseInt (second %))]))))
 
 ;; Part 1
 (defn computePosition
