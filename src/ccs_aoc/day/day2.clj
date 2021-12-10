@@ -1,18 +1,14 @@
 (ns ccs-aoc.day.day2
   (:require
    [clojure.string :as str]
-   [clojure.core.match :refer [match]]))
-
-(def inputFile "input/day2.txt")
+   [clojure.core.match :refer [match]]
+   [ccs-aoc.util :refer [readLines]]))
 
 (defn readCmds []
-  (->> inputFile
-       slurp
-       str/split-lines
+  (->> (readLines "input/day2.txt")
        (map #(str/split % #" "))
        (map #(identity [(first %) (Integer/parseInt (second %))]))))
 
-;; Part 1
 (defn computePosition
   [cmds]
   (loop [cmds cmds x 0 y 0]
@@ -25,7 +21,6 @@
 (defn part1 []
   (apply * (computePosition (readCmds))))
 
-;; Part 2
 (defn computePositionAim
   [cmds]
   (loop [cmds cmds x 0 y 0 aim 0]

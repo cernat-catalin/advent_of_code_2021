@@ -5,13 +5,16 @@
 (defn readLines [file]
   (str/split-lines (slurp file)))
 
+(defn parseInt [x]
+  (Integer/parseInt x))
+
 (defn parseLineInt
   ([line] (parseLineInt #"\s+" line))
   ([sep line]
    (->> line
         str/trim
         (#(str/split % sep))
-        (map #(Integer/parseInt %)))))
+        (map parseInt))))
 
 (defn map2d [f xss]
   (for [xs xss]
@@ -29,5 +32,12 @@
 
 (defn drop-nths [xs coll]
   (keep-indexed #(if (not (in? %1 xs)) %2 nil) coll))
+
+(defn rotate [xs]
+  (->> xs
+       cycle
+       (drop 1)
+       (take (count xs)))
+  )
 
 (defmacro dbg [x] `(let [x# ~x] (println "dbg:" '~x "=" x#) x#))
