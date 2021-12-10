@@ -1,9 +1,7 @@
 (ns ccs-aoc.day.day4
   (:require
-   [ccs-aoc.util :refer [parseLineInt readLines map2d zip zip3]]
+   [ccs-aoc.util :refer [parseLineInt readLines map2d zip drop-nths]]
    [clojure.core.match :refer [match]]))
-
-(defmacro dbg [x] `(let [x# ~x] (println "dbg:" '~x "=" x#) x#))
 
 (defn parseBoards [lines]
   (loop [xs lines boards []]
@@ -38,7 +36,6 @@
 (defn markBoard [x board]
   (map2d #(if (= % x) -1 %) board))
 
-; Part 1
 (defn part1 []
   (let [input (parseInput)
         numbers (first input)
@@ -51,23 +48,13 @@
                                      (* x (sumBoard (second (first canditate))))
                                      (recur markedBoards (drop 1 numbers)))))))
 
-(defn drop-nth [n coll]
-  (keep-indexed #(if (not= %1 n) %2 nil) coll))
-
-(defn in? [x coll]
-  (some #{x} coll))
-
-(defn drop-nths [xs coll]
-  (keep-indexed #(if (not (in? %1 xs)) %2 nil) coll))
-
-; Part 2
 (defn part2 []
   (let [input (parseInput)
         numbers (first input)
         boards (second input)] (last (loop [boards boards numbers numbers wins []]
                                        (let [x (first numbers)
                                              markedBoards (map #(markBoard x %) boards)
-                                             candidates (zip3 (map checkBoard markedBoards) (range) markedBoards)
+                                             candidates (zip (map checkBoard markedBoards) (range) markedBoards)
                                              canditate (filter #(first %) candidates)]
                                          (if (empty? numbers) wins
                                              (if (not (= 0 (count canditate)))
@@ -78,3 +65,4 @@
                                                (recur markedBoards
                                                       (drop 1 numbers)
                                                       wins))))))))
+

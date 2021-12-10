@@ -26,9 +26,9 @@
 (defn group [xs]
   (loop [xs xs ys []]
     (match [xs]
-      [([a b c] :seq)] (concat ys [(+ a (+ b c))])
+      [([a b c] :seq)] (concat ys [(+ a b c)])
       [([a b c & _] :seq)] (recur (drop 1 xs)
-                                  (concat ys [(+ a (+ b c))])))))
+                                  (concat ys [(+ a b c)])))))
 
 (defn part2 []
   (countIncreasing (group (readNumbers))))
