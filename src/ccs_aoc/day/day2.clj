@@ -1,4 +1,4 @@
-(ns ccs_aoc.day.day2
+(ns ccs-aoc.day.day2
   (:require
    [clojure.string :as str]
    [clojure.core.match :refer [match]]))
@@ -22,7 +22,8 @@
       [([["down" dy] & _] :seq)] (recur (drop 1 cmds) x (+ y dy))
       [([["up" dy] & _] :seq)] (recur (drop 1 cmds) x (- y dy)))))
 
-(apply * (computePosition (readCmds)))
+(defn part1 []
+  (apply * (computePosition (readCmds))))
 
 ;; Part 2
 (defn computePositionAim
@@ -34,4 +35,5 @@
       [([["down" da] & _] :seq)] (recur (drop 1 cmds) x y (+ aim da))
       [([["up" da] & _] :seq)] (recur (drop 1 cmds) x y (- aim da)))))
 
-(apply * (computePositionAim (readCmds)))
+(defn part2 []
+  (apply * (computePositionAim (readCmds))))

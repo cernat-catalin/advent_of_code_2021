@@ -35,11 +35,12 @@
        (let [n (count lines)
              m (- (/ n 2))])))
 
-(let [lines (readLines)
-      c (compl lines)
-      gamma (gammaRate lines)
-      epsilon (- c (+ 1 gamma))]
-  (* gamma epsilon))
+(defn part1 []
+  (let [lines (readLines)
+        c (compl lines)
+        gamma (gammaRate lines)
+        epsilon (- c (+ 1 gamma))]
+    (* gamma epsilon)))
 
 ; Part 2
 (defn majority [xs i b] ; check if bit `b` is in majority for bits in pos `i`
@@ -62,7 +63,9 @@
        binaryToDecimal
        (let [pick (fn [xs i b] (filter #(= b (nth % i)) xs))]))) ; pick numbers with bit `b` in pos `i`
 
-(let [lines (readLines)
-      generator (pickNumbers lines true)
-      scrubber (pickNumbers lines false)]
-  (* generator scrubber))
+(defn part2 []
+  (let [lines (readLines)
+        generator (pickNumbers lines true)
+        scrubber (pickNumbers lines false)]
+    (* generator scrubber)))
+

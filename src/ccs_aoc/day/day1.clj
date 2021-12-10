@@ -1,4 +1,4 @@
-(ns ccs_aoc.day.day1
+(ns ccs-aoc.day.day1
   (:gen-class)
   (:require
    [clojure.string :as str]
@@ -19,7 +19,8 @@
        (map #(< (first %) (second %)))
        (reduce (fn [acc x] (if x (inc acc) acc)) 0)))
 
-(countIncreasing (readNumbers))
+(defn part1 []
+  (countIncreasing (readNumbers)))
 
 ;; Part 2
 (defn group [xs]
@@ -29,4 +30,5 @@
       [([a b c & _] :seq)] (recur (drop 1 xs)
                                   (concat ys [(+ a (+ b c))])))))
 
-(countIncreasing (group (readNumbers)))
+(defn part2 []
+  (countIncreasing (group (readNumbers))))
