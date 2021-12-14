@@ -7,7 +7,9 @@
    [ccs-aoc.day.day3 :as day3]
    [ccs-aoc.day.day4 :as day4]
    [ccs-aoc.day.day5 :as day5]
-   [ccs-aoc.day.day6 :as day6]))
+   [ccs-aoc.day.day6 :as day6]
+   [ccs-aoc.day.day7 :as day7]
+   [ccs-aoc.day.day9 :as day9]))
 
 (deftest day1-test
   (testing "Day 1 Part 1"
@@ -44,3 +46,16 @@
     (is (= 350917 (day6/part1))))
   (testing "Day 6 Part 2"
     (is (= 1592918715629 (day6/part2)))))
+
+; XXX Very slow
+;(deftest day7-test
+  ;(testing "Day 7 Part 1"
+    ;(is (= 356922 (day7/part1))))
+  ;(testing "Day 7 Part 2"
+    ;(is (= 100347031 (day7/part2)))))
+
+(deftest day9-test
+  (testing "Day 9 Part 1"
+    (is (= 502 (day9/part1))))
+  (testing "Day 0 Part 2"
+    (is (= 1330560 (day9/part2)))))

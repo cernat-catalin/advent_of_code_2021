@@ -2,19 +2,19 @@
   (:require
    [clojure.string :as str]))
 
-(defn readLines [file]
+(defn read-lines [file]
   (str/split-lines (slurp file)))
 
-(defn parseInt [x]
+(defn parse-int [x]
   (Integer/parseInt x))
 
-(defn parseLineInt
-  ([line] (parseLineInt #"\s+" line))
+(defn parse-line-int 
+  ([line] (parse-line-int #"\s+" line))
   ([sep line]
    (->> line
         str/trim
         (#(str/split % sep))
-        (map parseInt))))
+        (mapv parse-int))))
 
 (defn map2d [f xss]
   (for [xs xss]
@@ -37,7 +37,16 @@
   (->> xs
        cycle
        (drop 1)
-       (take (count xs)))
-  )
+       (take (count xs))))
 
 (defmacro dbg [x] `(let [x# ~x] (println "dbg:" '~x "=" x#) x#))
+
+(defn median [xs]
+  (let [mid (/ (count xs) 2)]
+    (nth (sort xs) mid)))
+
+(defn sum [xs]
+  (apply + xs))
+
+(defn abs [x]
+  (Math/abs x))

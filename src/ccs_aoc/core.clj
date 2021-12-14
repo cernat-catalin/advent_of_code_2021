@@ -1,5 +1,5 @@
 (ns ccs-aoc.core
-  (:gen-class) 
+  (:gen-class)
   (:require
     [ccs-aoc.day.day4 :refer [part2]]))
 
